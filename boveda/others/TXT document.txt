@@ -1,0 +1,4 @@
+yolo task=detect mode=train resume model="C:/Users/wpereira/Documents/Codes/CEVA/runs/detect/train/weights/last.pt" data="C:/Users/wpereira/Documents/Codes/CEVA/Data/SKU-Detection-v8-DA/data.yaml" batch=-1 epochs=500 imgsz=2048
+
+
+yolo task=detect mode=train model="C:/Users/wpereira/Documents/CEVA/pre_trained_models/yolov8m.pt" data="C:/Users/wpereira/Documents/CEVA/Data/SKU-Detection-v8-DA/data.yaml" batch=-1 epochs=500 imgsz=2048
