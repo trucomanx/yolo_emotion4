@@ -1,11 +1,35 @@
 #!/usr/bin/python
-# export CUDA_VISIBLE_DEVICES=1
-from ultralytics import YOLO
-                                                                                                                                                                                            
+
 import os
-#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+import sys
+from ultralytics import YOLO
+
 
 dataset_path='/media/maquina02/HD/Dados/Fernando/DATASET/YOLO-COPY/TESE/BER/BER2024/BER2024-BODY';
+model_type='yolov8n-cls';
+epochs=300;
+batch_size=8;
+imgsz=224;
+
+for n in range(len(sys.argv)):
+    if sys.argv[n]=='--dataset-dir':
+        dataset_path=sys.argv[n+1];
+    elif sys.argv[n]=='--model':
+        model_type=sys.argv[n+1];
+    elif sys.argv[n]=='--epochs':
+        epochs=int(sys.argv[n+1]);
+    elif sys.argv[n]=='--batch-size':
+        batch_size=int(sys.argv[n+1]);
+    elif sys.argv[n]=='--imgsz':
+        imgsz=int(sys.argv[n+1]);
+
+print('dataset_path',dataset_path);
+print('  model_type',model_type);
+print('      epochs',epochs);
+print('  batch_size',batch_size);
+print('       imgsz',imgsz);
+
+#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 if os.path.exists('runs/classify/train/weights'):
     # 
@@ -20,7 +44,7 @@ else:
     model = YOLO('yolov8n-cls.yaml').load('yolov8n-cls.pt')  # build from YAML and transfer weights
 
     # https://docs.ultralytics.com/modes/train/#train-settings
-    results = model.train(data=dataset_path, epochs=300, imgsz=224,batch=8,save=True)
+    results = model.train(data=dataset_path, epochs=epochs, imgsz=imgsz,batch=batch_size,save=True)
 
     print(results)
 
