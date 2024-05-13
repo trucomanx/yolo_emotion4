@@ -49,6 +49,8 @@ data['train_length']=L_train;
 data['val_length']=L_val;
 data['test_length']=L_test;
 
+print(data)
+
 import json
 with open("statistics.json", "w") as write_file:
-    json.dump(student, write_file, indent=4)
+    json.dump(data, write_file, indent=4)
