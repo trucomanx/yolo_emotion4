@@ -64,7 +64,7 @@ def verify_categorical_accuracy(model,input_dir,labels_dic={0: 'negative', 1: 'n
     for ID, LABEL in labels_dic.items():
         dir_path=os.path.join(input_dir,LABEL);
         print('Working on subdirectory',LABEL,'...')
-        res=model(dir_path,silence=True);
+        res=model(dir_path);
         L=L+len(res);
         for dat in res:
             if ID==dat.probs.top1:
