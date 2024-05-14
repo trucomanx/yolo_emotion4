@@ -57,19 +57,21 @@ else:
     print(results);
     print('END');
 
+from tqdm import tqdm
 def verify_categorical_accuracy(model,input_dir,labels_dic={0: 'negative', 1: 'neutro', 2: 'pain', 3: 'positive'}):
     L=0;
     Count=0;
-    print('Working on',input_dir);
+    print('\nWorking on',input_dir);
     for ID, LABEL in labels_dic.items():
         dir_path=os.path.join(input_dir,LABEL);
         print('Working on subdirectory',LABEL,'...')
-        res=model(dir_path);
-        L=L+len(res);
-        for dat in res:
-            if ID==dat.probs.top1:
+        archivo_list=os.listdir(dir_path);
+        L=L+len(archivo_list);
+        for n in tqdm(range(len(archivo_list))):
+            res=model(os.path.join(dir_path,archivo_list[n]),verbose=False);
+            if ID==res[0].probs.top1:
                 Count=Count+1;
-    return Count*1.0/L, L;    
+    return Count*1.0/L, L;  
         
 model=model.load('runs/classify/train/weights/best.pt');
 
