@@ -89,5 +89,5 @@ data['test_length']=L_test;
 print('data',data);
 
 import json
-with open(os.path.join(output_dir,'statistics.json'), "w") as write_file:
+with open(os.path.join(output_dir,'training_data_results.json'), "w") as write_file:
     json.dump(data, write_file, indent=4)
