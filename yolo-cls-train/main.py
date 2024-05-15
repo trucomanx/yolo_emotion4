@@ -90,8 +90,9 @@ data['test_categorical_accuracy'] =test_acc;
 data['train_length']=L_train;
 data['val_length']=L_val;
 data['test_length']=L_test;
+data['number_of_parameters']=model.info()[1];
 print('data',data);
 
 import json
 with open(os.path.join(output_dir,'training_data_results.json'), "w") as write_file:
-    json.dump(data, write_file, indent=4)
+    json.dump(data, write_file, indent=4);
