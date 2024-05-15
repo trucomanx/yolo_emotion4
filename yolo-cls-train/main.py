@@ -81,8 +81,6 @@ test_acc , L_test  = verify_categorical_accuracy(model,os.path.join(dataset_path
 
 ##############################################################################################
 
-shutil.move('runs', os.path.join(output_dir,'runs'));
-
 data=dict();
 data['train_categorical_accuracy']=train_acc;
 data['val_categorical_accuracy']  =val_acc;
@@ -96,3 +94,6 @@ print('data',data);
 import json
 with open(os.path.join(output_dir,'training_data_results.json'), "w") as write_file:
     json.dump(data, write_file, indent=4);
+##############################################################################################
+
+shutil.move('runs', os.path.join(output_dir,'runs'));
