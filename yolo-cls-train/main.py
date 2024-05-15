@@ -81,7 +81,7 @@ test_acc , L_test  = verify_categorical_accuracy(model,os.path.join(dataset_path
 
 ##############################################################################################
 
-shutil.move('runs', output_dir);
+shutil.move('runs', os.path.join(output_dir,'runs'));
 
 data=dict();
 data['train_categorical_accuracy']=train_acc;
