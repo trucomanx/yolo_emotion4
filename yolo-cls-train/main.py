@@ -6,9 +6,9 @@ import shutil
 from ultralytics import YOLO
 
 
-dataset_path='/media/maquina02/HD/Dados/Fernando/DATASET/YOLO-COPY/TESE/BER/BER2024/BER2024-BODY';
+dataset_path='/media/fernando/Expansion/DATASET/YOLO-COPY/TESE/BER/BER2024/BER2024-BODY';
 model_type='yolov8n-cls';
-epochs=300;
+epochs=5;
 batch_size=8;
 imgsz=224;
 output_dir=model_type;
@@ -73,7 +73,7 @@ def verify_categorical_accuracy(model,input_dir,labels_dic={0: 'negative', 1: 'n
                 Count=Count+1;
     return Count*1.0/L, L;  
         
-model=model.load('runs/classify/train/weights/best.pt');
+model=YOLO('runs/classify/train/weights/best.pt');
 
 train_acc, L_train = verify_categorical_accuracy(model,os.path.join(dataset_path,'train'));
 val_acc  , L_val   = verify_categorical_accuracy(model,os.path.join(dataset_path,'val'));
