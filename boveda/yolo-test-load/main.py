@@ -11,3 +11,8 @@ model = YOLO(model_path)
 
 # Verificar o modelo
 print(model.model)
+
+number_of_classes = model.model.yaml['nc'] 
+print(number_of_classes)
+
+print(model.model.yaml)
